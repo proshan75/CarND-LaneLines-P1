@@ -30,7 +30,7 @@ Step 3, Use the blurred image and run through canny edge generation method. Here
 Step 4, As we are interested in finding lane edges on road, here I defined a polygon somewhat matching with the road shape. The size of the polygon is defined based on image proportion. This polygon shape will work fine on straight road, but will have trouble limiting the region of interest on a curved road.
 Step 5, Finally I called the hough transform line creation method which stiches the line segment.
 
-I haven't got to implement a single line generation for identified line segments. As the project is due shortly, I decided to proceed with the basic implementation where lane edges get identified on straight road captured in day light. I plan to get back to implementing changes to  the draw_lines() function in order to draw a single line on the left and right lanes.
+I implemented a single line generation for identified line segments. The draw_lines method is enhanced to generate single line for the line segments. As suggested in the guidelines, first slope and center point for all segments is calculated. Then they are averaged to get single value for the slope and center. Finally the line is extended to middle and bottom to generate single line.
 
 ![alt text][image1]
 [image2] ./test_images/processed_solidWhiteCurve.jpg "Solid right lane"
@@ -43,7 +43,7 @@ Also, the current implementation doesn't look for slopes on the lane segments. F
 
 ### 3. Suggest possible improvements to your pipeline
 
-First I would like to complete the single line generation logic with further enhancement to the draw_lines method. As suggested, I plan to try out the slope and center point value approach. 
+The draw_lines method can be further improved by adding invalid slope range.
 
 Apart from that if any conditions to filter out low slope values are added to draw_lines method then the horizontal lanes can be eliminated. I hope to implement these two improvements. 
 
